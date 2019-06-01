@@ -10,6 +10,7 @@ import 'leaflet/dist/images/marker-icon.png';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
     map: L.Map;
 
