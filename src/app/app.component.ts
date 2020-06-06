@@ -1,9 +1,6 @@
 import { Component } from "@angular/core";
-import { latLng, Map, tileLayer } from "leaflet";
+import { latLng, Map, tileLayer, featureGroup } from "leaflet";
 import * as L from "leaflet";
-
-import "leaflet/dist/images/marker-shadow.png";
-import "leaflet/dist/images/marker-icon.png";
 
 @Component({
 	selector: "app-root",
@@ -11,14 +8,19 @@ import "leaflet/dist/images/marker-icon.png";
 	styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-	map: L.Map;
+	map: Map;
+
+	drawnItems: L.FeatureGroup = featureGroup();
 
 	options = {
 		layers: [
 			tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
 		],
 		zoom: 15,
-		center: latLng(8.524139, 76.936638)
+		center: latLng(8.524139, 76.936638),
+		edit: {
+			featureGroup: this.drawnItems
+		}
 	};
 
 	drawOptions = {
@@ -35,16 +37,12 @@ export class AppComponent {
 		}
 	};
 
-	onMapReady(map: Map) {
-		map.on(L.Draw.Event.CREATED, function(e) {
-			const type = (e as any).layerType,
-				layer = (e as any).layer;
-
-			if (type === "polygon") {
-				// here you got the polygon coordinates
-				const polygonCoordinates = layer._latlngs;
-				console.log(polygonCoordinates);
-			}
-		});
+	onDrawCreated(e: any) {
+		const { layerType, layer } = e;
+		if (layerType === "polygon") {
+			const polygonCoordinates = layer._latlngs;
+			console.log(polygonCoordinates);
+		}
+		this.drawnItems.addLayer(e.layer);
 	}
 }

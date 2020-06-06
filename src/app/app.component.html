@@ -4,5 +4,7 @@
 	leafletDraw
 	[leafletOptions]="options"
 	[leafletDrawOptions]="drawOptions"
-	(leafletMapReady)="onMapReady($event)"
-></div>
+	(leafletDrawCreated)="onDrawCreated($event)"
+>
+	<div [leafletLayer]="drawnItems"></div>
+</div>
