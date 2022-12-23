@@ -1,8 +1,8 @@
 # NgxLeafletDrawCoordinates
 
-Retrieve a polygon's coordinates after drawing it on the map using Angular 10 & ngx-leaflet, ngx-leaflet-draw.
+Retrieve a polygon's coordinates after drawing it on the map using Angular 13 & ngx-leaflet, ngx-leaflet-draw.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.
 
 ## Development server
 
